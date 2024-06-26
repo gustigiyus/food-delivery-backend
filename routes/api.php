@@ -27,3 +27,6 @@ Route::put('/user/update-latlong', [App\Http\Controllers\Api\AuthController::cla
 
 //get all restaurant
 Route::get('/restaurant', [App\Http\Controllers\Api\AuthController::class, 'getRestaurant']);
+
+// Api resource Product
+Route::apiResource('/products', App\Http\Controllers\Api\ProductController::class)->middleware('auth:sanctum');
