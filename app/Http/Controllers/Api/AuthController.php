@@ -141,4 +141,34 @@ class AuthController extends Controller
             'message' => 'Logout success'
         ]);
     }
+
+    //update latlong user
+    public function updateLatlong(Request $request)
+    {
+        $request->validate([
+            'latlong' => 'required|string',
+        ]);
+
+        $user = $request->user();
+        $user->latlong = $request->latlong;
+        $user->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Latlong updated successfully',
+            'data' => $user
+        ]);
+    }
+
+    //get all restaurant
+    public function getRestaurant()
+    {
+        $restaurant = User::where('roles', 'restaurant')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Get all restaurant',
+            'data' => $restaurant
+        ]);
+    }
 }
